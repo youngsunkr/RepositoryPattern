@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Repository.Models;
+using Repository.Models.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,23 @@ namespace Repository.Controllers
 {
     public class HomeController : Controller
     {
+        //DataContext db = new DataContext();
+
+        private IBookRepository repository;
+
+        public HomeController()
+        {
+            this.repository = new BookRepository(new DataContext());
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var data = from m in repository.GetConetnt()
+                       select m;
+
+            //return View(data);
+            return View(data.Take(5).ToList());
+            //return View(db.Book.Take(10).ToList());
         }
 
         public ActionResult About()
