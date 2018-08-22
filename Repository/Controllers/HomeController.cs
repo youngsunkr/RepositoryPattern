@@ -21,7 +21,7 @@ namespace Repository.Controllers
 
         public ActionResult Index()
         {
-            var data = from m in repository.GetConetnt()
+            var data = from m in repository.GetBooks()
                        select m;
 
             //return View(data);
@@ -29,18 +29,52 @@ namespace Repository.Controllers
             //return View(db.Book.Take(10).ToList());
         }
 
-        public ActionResult About()
+        public ActionResult Create()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        [HttpPost]
+        public ActionResult Create(Book book)
         {
-            ViewBag.Message = "Your contact page.";
+            repository.InsertBook(book);
+            repository.Save();
+            return RedirectToAction("Index");
+        }
 
-            return View();
+        public ActionResult Details(int id)
+        {
+            Book b = repository.GetBookByID(id);
+            return View(b);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            Book b = repository.GetBookByID(id);
+            repository.Save();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id, Book b)
+        {
+            repository.DeleteBook(id);
+            repository.Save();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            Book b = repository.GetBookByID(id);
+            return View(b);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int id, Book book)
+        {
+            repository.UpdateBook(book);
+            repository.Save();
+            return RedirectToAction("Index");
         }
     }
 }

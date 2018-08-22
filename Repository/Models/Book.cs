@@ -11,15 +11,11 @@ namespace Repository.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.ComponentModel.DataAnnotations;
-
-     [Table("Book")]
+    
     public partial class Book
     {
-        [Key]
         public int Id { get; set; }
-        public byte[] bookname { get; set; }
+        public string bookname { get; set; }
         public string author { get; set; }
     }
 }

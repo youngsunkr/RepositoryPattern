@@ -8,15 +8,15 @@ namespace Repository.Models.DAL
 {
     public interface IBookRepository : IDisposable
     {
-        IEnumerable<Book> GetConetnt();
+        IEnumerable<Book> GetBooks();
 
-        Book GetContentByID(int bookID);
+        Book GetBookByID(int bookID);
 
-        void InsertContent(Book book);
+        void InsertBook(Book book);
 
-        void DeleteContent(int bookID);
+        void DeleteBook(int bookID);
 
-        void UpdateContent(Book book);
+        void UpdateBook(Book book);
 
         void Save();
     }

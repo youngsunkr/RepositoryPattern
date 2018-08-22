@@ -15,7 +15,7 @@ namespace Repository.Models.DAL
             this._context = context;
         }
 
-        public void DeleteContent(int bookID)
+        public void DeleteBook(int bookID)
         {
             Book book = _context.Book.Find(bookID);
             _context.Book.Remove(book);
@@ -26,17 +26,17 @@ namespace Repository.Models.DAL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Book> GetConetnt()
+        public IEnumerable<Book> GetBooks()
         {
             return _context.Book.ToList();
         }
 
-        public Book GetContentByID(int bookID)
+        public Book GetBookByID(int bookID)
         {
             return _context.Book.Find(bookID);
         }
 
-        public void InsertContent(Book book)
+        public void InsertBook(Book book)
         {
             _context.Book.Add(book);
         }
@@ -46,7 +46,7 @@ namespace Repository.Models.DAL
             _context.SaveChanges();
         }
 
-        public void UpdateContent(Book book)
+        public void UpdateBook(Book book)
         {
             _context.Entry(book).State = System.Data.Entity.EntityState.Modified; 
         }
