@@ -12,12 +12,18 @@ namespace Repository.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Book
+    public partial class CustomerDemographics
     {
-        public int Id { get; set; }
-        public string bookname { get; set; }
-        public string author { get; set; }
-        public Nullable<System.DateTime> RegDate { get; set; }
-        public Nullable<System.DateTime> EditDate { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CustomerDemographics()
+        {
+            this.Customers = new HashSet<Customers>();
+        }
+    
+        public string CustomerTypeID { get; set; }
+        public string CustomerDesc { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Customers> Customers { get; set; }
     }
 }

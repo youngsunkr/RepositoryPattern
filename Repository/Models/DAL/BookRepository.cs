@@ -21,11 +21,6 @@ namespace Repository.Models.DAL
             _context.Book.Remove(book);
         }
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Book> GetBooks()
         {
             return _context.Book.ToList();
@@ -49,6 +44,11 @@ namespace Repository.Models.DAL
         public void UpdateBook(Book book)
         {
             _context.Entry(book).State = System.Data.Entity.EntityState.Modified; 
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }
